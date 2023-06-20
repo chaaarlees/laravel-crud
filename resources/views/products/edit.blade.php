@@ -7,7 +7,7 @@
     {{-- BOOTSTRAP --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <title>Create Product</title>
+    <title>Edit Product</title>
 </head>
 <body>
     <div class="container mt-5">
@@ -23,29 +23,29 @@
                     </ul>
                 @endif
             </div>
-            <form method="post" action="{{route('product.store')}}" class="card-body">
+            <form method="post" action="{{route('product.update', ['product' => $product])}}" class="card-body">
                 @csrf
-                @method('post')
+                @method('put')
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name"placeholder="name" class="form-control">
+                    <input type="text" value="{{$product->name}}" id="name" name="name"placeholder="name" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="qty">Quantity:</label>
-                    <input type="text" id="qty" name="qty"placeholder="quantity" class="form-control">
+                    <input type="text" id="qty" value="{{$product->qty}}" name="qty"placeholder="quantity" class="form-control">
 
                 </div>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="decimal" id="price" name="price"placeholder="price with decimals" class="form-control">
+                    <input type="decimal" id="price" value="{{$product->price}}" name="price"placeholder="price with decimals" class="form-control">
 
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Description:</label>
-                    <textarea name="description" id="descripcion" placeholder="Insert a descripction of the product here..." cols="30" rows="5" class="form-control"></textarea>
+                    <textarea name="description" value="" id="descripcion" placeholder="Insert a descripction of the product here..." cols="30" rows="5" class="form-control">{{$product->description}}</textarea>
                 </div>
                 <div class="form-group mt-3 ">
-                    <input class="btn btn-info text-light" type="submit" value="Save a new Product">
+                    <input class="btn btn-info text-light" type="submit" value="Update">
                 </div>
 
             </form>
